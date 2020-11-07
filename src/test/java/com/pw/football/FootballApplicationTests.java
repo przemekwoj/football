@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class FootballApplicationTests {
 
-	@Test
-	void shouldFail() {
-		assertTrue(true == false);
-	}
+//	@Test
+//	void shouldFail() {
+//		assertTrue(true == false);
+//	}
 
 	@Test
 	void shouldPass(){
