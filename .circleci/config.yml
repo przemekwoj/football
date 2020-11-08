@@ -10,7 +10,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/buildpack-deps:trusty
-        steps:
+        steps
           - checkout
           - run:
               command: |
