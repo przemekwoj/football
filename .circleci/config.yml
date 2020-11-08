@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run: mvn verify
 
+orbs:
+  heroku: circleci/heroku@0.0.10
+
 workflows:
-  version: 2
-  orbs:
-    heroku: circleci/heroku@0.0.10
   build-deploy:
     jobs:
       - build
