@@ -9,11 +9,12 @@ jobs:
       - run: mvn verify
   deploy:
     steps:
-      run:
-        command: git push https://heroku$HEROKU_API_KEY@git.heroku.com/pw-football.git master
+      - checkout
+      - run:
+          command: git push https://heroku$HEROKU_API_KEY@git.heroku.com/pw-football.git master
 
 workflows:
-  version: 2
+  version: 2.0
   build-deploy:
     jobs:
       - build
