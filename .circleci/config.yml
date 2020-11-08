@@ -10,11 +10,9 @@ jobs:
   deploy:
     docker:
       - image: circleci/buildpack-deps:trusty
-        steps
-          - checkout
-          - run:
-              command: |
-                git push https://heroku$HEROKU_API_KEY@git.heroku.com/pw-football.git master
+    steps:
+      - checkout
+      - run: git push https://heroku$HEROKU_API_KEY@git.heroku.com/pw-football.git master
 
 workflows:
   version: 2
