@@ -7,18 +7,12 @@ jobs:
     steps:
       - checkout
       - run: mvn verify
-  deploy:
-    docker:
-      - image: circleci/buildpack-deps:trusty
-    steps:
-      - checkout
-      - run: git push https://heroku$HEROKU_API_KEY@git.heroku.com/pw-football.git master
 
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
-      - deploy:
+      - heroku/deploy-via-git
           requires:
             - build
