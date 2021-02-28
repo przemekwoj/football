@@ -32,29 +32,12 @@ public class OAuth2LoginSecurityConfig
         this.tokenStore = tokenStore;
         this.tokenFilter = tokenFilter;
     }
-//    @Autowired
-//    private ClientRegistrationRepository clientRegistrationRepository;
-//
-//    private LogoutSuccessHandler oidcLogoutSuccessHandler() {
-//        System.out.println("LogOutHandler");
-//        OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler =
-//                new OidcClientInitiatedLogoutSuccessHandler(
-//                        this.clientRegistrationRepository);
-//
-//        oidcLogoutSuccessHandler.setPostLogoutRedirectUri(
-//                URI.create("http://localhost:8080/login"));
-//
-//        return oidcLogoutSuccessHandler;
-//    }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
                 .cors()
-                // TODO odkomentować cors na dole "@Bean"
-                .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/oauth2/**", "/login**").permitAll()
@@ -77,15 +60,15 @@ public class OAuth2LoginSecurityConfig
         );
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowedMethods(Collections.singletonList("*"));
-//        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-//        config.setAllowedHeaders(Collections.singletonList("*"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedMethods(Collections.singletonList("*"));
+        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+        config.setAllowedHeaders(Collections.singletonList("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 }

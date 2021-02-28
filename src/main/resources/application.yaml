@@ -9,8 +9,8 @@ spring:
           google:
             client-id: 747889372962-a1ifq94741pv37g3fad1ndo28ve224di.apps.googleusercontent.com
             client-secret: YIx9dtLzBY6Z_98T1CEsaYQQ
-            redirectUri: http://localhost:4200/callback
+            redirectUri: http://localhost:4200/callback/google
           github:
             client-id: ebd390008ca326582800
             client-secret: ad378c6a53fb24f8ff022f749e89939e1286c5d7
-            redirectUri: http://localhost:4200/callback
+            redirectUri: http://localhost:4200/callback/github
