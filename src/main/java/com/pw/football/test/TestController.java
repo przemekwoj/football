@@ -68,6 +68,12 @@ public class TestController {
         return new Test("home", "home");
     }
 
+    @GetMapping("/home2")
+    public Test home2() {
+        System.out.println("Home2");
+        return new Test("home2", "home2");
+    }
+
 //    @GetMapping("login")
 //    public String login() {
 //        System.out.println("test2");
