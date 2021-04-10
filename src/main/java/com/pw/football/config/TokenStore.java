@@ -19,9 +19,11 @@ public class TokenStore {
         return token;
     }
 
-    //to ja zroiblem
-
     public Authentication getAuth(String token) {
         return cache.getOrDefault(token, null);
+    }
+
+    public void removeToken(String token) {
+        cache.remove(token);
     }
 }

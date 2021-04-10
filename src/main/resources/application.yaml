@@ -14,3 +14,11 @@ spring:
             client-id: ebd390008ca326582800
             client-secret: ad378c6a53fb24f8ff022f749e89939e1286c5d7
             redirectUri: http://localhost:4200/callback/github
+
+cors:
+  origins:
+    - http://localhost:4200
+  methods:
+    - "*"
+  headers:
+    - "*"

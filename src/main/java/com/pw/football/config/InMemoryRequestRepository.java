@@ -9,33 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryRequestRepository implements AuthorizationRequestRepository< OAuth2AuthorizationRequest > {
+public class InMemoryRequestRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 
-    private final Map< String, OAuth2AuthorizationRequest > cache = new HashMap<>();
+    private final Map<String, OAuth2AuthorizationRequest> cache = new HashMap<>();
 
     @Override
-    public OAuth2AuthorizationRequest loadAuthorizationRequest( HttpServletRequest request ) {
-        String state = request.getParameter( "state" );
-        if ( state != null ) {
-            return removeAuthorizationRequest( request );
-        }
-        return null;
+    public OAuth2AuthorizationRequest loadAuthorizationRequest(HttpServletRequest request) {
+        return removeAuthorizationRequest(request);
     }
 
     @Override
-    public void saveAuthorizationRequest( OAuth2AuthorizationRequest authorizationRequest,
-                                          HttpServletRequest request, HttpServletResponse response ) {
-        String state = authorizationRequest.getState();
-        cache.put( state, authorizationRequest );
+    public void saveAuthorizationRequest(OAuth2AuthorizationRequest authorizationRequest,
+                                         HttpServletRequest request, HttpServletResponse response) {
+        var state = authorizationRequest.getState();
+        cache.put(state, authorizationRequest);
     }
 
     @Override
-    public OAuth2AuthorizationRequest removeAuthorizationRequest( HttpServletRequest request ) {
-        String state = request.getParameter( "state" );
-        if ( state != null ) {
-            return cache.remove( state );
-        }
-
-        return null;
+    public OAuth2AuthorizationRequest removeAuthorizationRequest(HttpServletRequest request) {
+        var state = request.getParameter("state");
+        return cache.remove(state);
     }
 }

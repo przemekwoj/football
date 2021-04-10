@@ -39,29 +39,6 @@ public class TestController {
         return new Test("imie", "naziwsko");
     }
 
-    @GetMapping("oauth2/token")
-    public Test token(@RequestParam String code) throws URISyntaxException {
-        System.out.println("oauth2/token");
-        String url = "https://oauth2.googleapis.com/token";
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        URI uri = new URI(url);
-        String body = "code=" + code + "&client_id=747889372962-a1ifq94741pv37g3fad1ndo28ve224di.apps.googleusercontent.com&client_secret=YIx9dtLzBY6Z_98T1CEsaYQQ&redirect_uri=http://localhost:4200/callback&grant_type=authorization_code";
-        var entity = new HttpEntity<>(body, headers);
-
-        ResponseEntity<String> result = restTemplate.postForEntity(uri, entity, String.class);
-        String resultInString = result.getBody();
-        String[] arrayResult = resultInString.split("\"");
-        return new Test(arrayResult[3], arrayResult[3]);
-    }
-
-    @GetMapping("/oidc-principal")
-    public OidcUser getOidcUserPrincipal(
-            @AuthenticationPrincipal OidcUser principal) {
-        return principal;
-    }
-
     @GetMapping("/home")
     public Test home() {
         System.out.println("Home");
@@ -74,18 +51,4 @@ public class TestController {
         return new Test("home2", "home2");
     }
 
-//    @GetMapping("login")
-//    public String login() {
-//        System.out.println("test2");
-//        return "login";
-//    }
-
-
-//    @RequestMapping("/resource")
-//    public Map<String, Object> home() {
-//        var model = new HashMap<String, Object>();
-//        model.put("id", UUID.randomUUID().toString());
-//        model.put("content", "Hello World");
-//        return model;
-//    }
 }

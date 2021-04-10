@@ -16,6 +16,7 @@ import java.io.IOException;
 public class TokenFilter extends OncePerRequestFilter {
 
     private final TokenStore tokenStore;
+    private static final String AUTHORIZATION_HEADER = "Authorization";
 
     public TokenFilter( TokenStore tokenStore ) {
         this.tokenStore = tokenStore;
@@ -23,12 +24,10 @@ public class TokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal( HttpServletRequest request, HttpServletResponse response, FilterChain filterChain ) throws ServletException, IOException {
-        String authToken = request.getHeader( "Authorization" );
+        String authToken = request.getHeader( AUTHORIZATION_HEADER );
         if ( authToken != null ) {
             String token = authToken.split( " " )[ 1 ];
             Authentication authentication = tokenStore.getAuth( token );
-            // to ja zrobilłem
-            //
             if ( authentication != null ) {
                 SecurityContextHolder.getContext().setAuthentication( authentication );
             }

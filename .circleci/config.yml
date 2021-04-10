@@ -14,7 +14,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:15.0.0
+      - image: cimg/openjdk:16.0.0
     steps:
       - checkout
       - run: mvn verify
